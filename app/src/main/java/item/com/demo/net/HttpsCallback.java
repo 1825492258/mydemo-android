@@ -16,6 +16,7 @@ import java.net.UnknownHostException;
 
 /**
  * Created by wuzongjie on 2018/7/9
+ * 对返回数据的统一封装
  */
 public abstract class HttpsCallback<T> extends AbsCallback<T> {
 
@@ -49,7 +50,6 @@ public abstract class HttpsCallback<T> extends AbsCallback<T> {
             response.close();
             throw new IllegalStateException("基类错误无法解析!");
         }
-
     }
 
 //    /**
@@ -72,13 +72,14 @@ public abstract class HttpsCallback<T> extends AbsCallback<T> {
         } else if (exception instanceof SocketTimeoutException) {
             onError("网络请求超时");
         } else if (exception instanceof HttpException) {
-            onError("服务器端异常，返回404或500");
+            onError("服务器端异常，返回404或5xx");
         } else if (exception instanceof StorageException) {
             onError("sd卡不存在或者没有权限");
         } else if (exception instanceof IllegalStateException) {
             String message = exception.getMessage();
             if ("会话失效".equals(message)) {
-                // 这里应该做会话失效的处理
+                // 这里应该做会话失效的统一处理
+                // 一般是清楚token，跳转到登录界面
                 onError("会话失效");
             } else {
                 onError(message);

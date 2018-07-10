@@ -11,6 +11,7 @@ import java.util.Stack;
  * AppManager 管理Activity栈
  */
 public class AppManager {
+
     private static Stack<Activity> activityStack;
     private static AppManager instance;
 
