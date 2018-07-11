@@ -15,6 +15,7 @@ import java.util.List;
 
 import item.com.demo.R;
 import item.com.demo.bean.GankModel;
+import item.com.demo.view.activity.WebActivity;
 
 /**
  * Created by wuzongjie on 2018/7/11
@@ -26,7 +27,7 @@ public class NewsAdapter extends BaseQuickAdapter<GankModel,BaseViewHolder>{
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, GankModel model) {
+    protected void convert(BaseViewHolder helper, final GankModel model) {
         helper.setText(R.id.title,model.desc)
                 .setText(R.id.desc, model.desc)//
                 .setText(R.id.pubDate, model.publishedAt.toString())//
@@ -35,7 +36,7 @@ public class NewsAdapter extends BaseQuickAdapter<GankModel,BaseViewHolder>{
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                WebActivity.show(mContext,model.desc,model.url);
             }
         });
         NineGridView nineGrid = helper.getView(R.id.nineGrid);
