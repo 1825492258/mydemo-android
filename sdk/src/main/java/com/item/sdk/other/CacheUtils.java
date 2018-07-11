@@ -7,9 +7,11 @@ import java.math.BigDecimal;
 
 /**
  * Created by wuzongjie on 2018/7/5
+ * 获取APP缓存多少以及清理APP缓存
  */
 public class CacheUtils {
-   private Context context;
+
+    private Context context;
 
     public CacheUtils(Context context) {
         this.context = context;
@@ -18,7 +20,7 @@ public class CacheUtils {
     /**
      * 获取缓存
      */
-    public   String getCacheSizeString() {
+    public String getCacheSizeString() {
         long size = getFolderSize(new File(context.getCacheDir().getAbsolutePath()));
         return formatFileSize(size);
     }
@@ -45,6 +47,7 @@ public class CacheUtils {
         }
         return dir.delete();
     }
+
     private long getFolderSize(File file) {
         if (!file.exists()) {
             return 0;

@@ -22,22 +22,30 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "com.android.support:appcompat-v7:$rootProject.appcompatVersion"
+    implementation "com.android.support:cardview-v7:$appcompatVersion"
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation 'com.android.support:support-v4:27.1.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation project(':sdk')
-
+    implementation "com.android.support:design:$rootProject.appcompatVersion"
     //  Fragmentation https://github.com/YoKeyword/Fragmentation
     implementation "me.yokeyword:fragmentation:$rootProject.fragmentationVersion"
     //必须使用
     implementation 'com.lzy.net:okgo:3.0.4'
     implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
-
+    implementation 'com.lzy.widget:ninegridview:0.2.1'
+    // BaseRecyclerViewAdapterHelper
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'
     // CircleImageView 圆形头像
     implementation "de.hdodenhof:circleimageview:$rootProject.circleimageviewVersion"
 
     // Butterknife https://github.com/JakeWharton/butterknife
     implementation "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+
+    // Glide 图片加载
+    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
 }

@@ -1,17 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
+
     <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_weight="1"
         android:id="@+id/fl_container"
-        android:layout_height="0dp"/>
-    <View
         android:layout_width="match_parent"
-        android:layout_height="50dp"/>
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:layout_marginBottom="48dp" />
+
+    <RadioGroup
+        android:id="@+id/home_tab_rg"
+        android:background="#eee"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/home_tab_one"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:drawableTop="@drawable/tab_one_select"
+            android:gravity="center"
+            android:text="one"
+            android:textColor="@color/radiobutton_text_color"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/home_tab_two"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/tab_one_select"
+            android:gravity="center"
+            android:text="two"
+            android:textColor="@color/radiobutton_text_color"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/home_tab_three"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/tab_one_select"
+            android:gravity="center"
+            android:text="three"
+            android:textColor="@color/radiobutton_text_color"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/home_tab_four"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/tab_one_select"
+            android:gravity="center"
+            android:text="four"
+            android:textColor="@color/radiobutton_text_color"
+            android:textSize="12sp" />
+    </RadioGroup>
+</FrameLayout>

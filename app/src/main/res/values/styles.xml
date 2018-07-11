@@ -7,5 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>-->
     </style>
-
+    <style name="tab_appearance">
+        <item name="android:textSize">14sp</item>
+    </style>
 </resources>
