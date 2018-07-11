@@ -86,7 +86,7 @@ public class TabOneFragment extends BaseCompatFragment implements SwipeRefreshLa
         super.onLazyInitView(savedInstanceState);
         // 开启Loading 获取数据
         setRefreshing(true);
-        onRefresh();
+        onRefresh(); // 第一次显示请求最新的List
     }
 
     public void setRefreshing(final boolean refreshing) {

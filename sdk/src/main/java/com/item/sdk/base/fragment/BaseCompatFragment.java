@@ -12,16 +12,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import me.yokeyword.fragmentation.SupportFragment;
 
 /**
  * Created by wuzongjie on 2018/7/3
  * Fragment基类
  */
-public abstract class BaseCompatFragment extends SupportFragment{
+public abstract class BaseCompatFragment extends SupportFragment {
 
     protected Context mContext;
     protected Activity mActivity;
+    private Unbinder binder;
 
     @Override
     public void onAttach(Context context) {
@@ -46,29 +48,36 @@ public abstract class BaseCompatFragment extends SupportFragment{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        ButterKnife.bind(this,view);
+        binder = ButterKnife.bind(this, view);
         getBundle(getArguments());
         initUI(savedInstanceState);
         initData();
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (binder != null) binder.unbind();
+    }
+
     /**
      * 在监听之前把数据准备好
      */
-    public void initData(){}
+    public void initData() {
+    }
 
     @LayoutRes
     public abstract int getLayoutId();
 
     /**
-     *  初始化UI
+     * 初始化UI
      */
     public abstract void initUI(Bundle savedInstanceState);
 
 
-
     /**
      * 也许需要自定义的View，一般不用理它
+     *
      * @return View
      */
     public View getLayoutView() {

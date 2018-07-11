@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.item.sdk.base.fragment.BaseCompatFragment;
+import com.item.sdk.utils.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +47,8 @@ public class ViewPagerFragment extends BaseCompatFragment {
 
     @Override
     public void initUI(Bundle savedInstanceState) {
+        StatusBarUtil.immersive(mActivity);
+        StatusBarUtil.setPaddingSmart(mActivity,mTab);
         List<Fragment> fragments = new ArrayList<>();
         List<String> list = new ArrayList<>();
         list.add("Android");
