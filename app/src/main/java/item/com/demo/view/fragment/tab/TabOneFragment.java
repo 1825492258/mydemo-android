@@ -34,7 +34,7 @@ import item.com.demo.net.UrlFactory;
 /**
  * Created by wuzongjie on 2018/7/11
  */
-public class TabOneFragment extends BaseCompatFragment implements SwipeRefreshLayout.OnRefreshListener {
+public class TabOneFragment extends BaseCompatFragment implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener {
 
     @BindView(R.id.mTextView)
     TextView mText;
@@ -42,10 +42,11 @@ public class TabOneFragment extends BaseCompatFragment implements SwipeRefreshLa
     RecyclerView recyclerView;
     @BindView(R.id.refreshLayout)
     SwipeRefreshLayout refreshLayout;
-    private static final int PAGE_SIZE = 20;
+    private static final int PAGE_SIZE = 6;
     private int currentPage = 2;
     private NewsAdapter newsAdapter;
     private String url;
+
     public static TabOneFragment newInstance(String title) {
         Bundle args = new Bundle();
         TabOneFragment fragment = new TabOneFragment();
@@ -72,12 +73,13 @@ public class TabOneFragment extends BaseCompatFragment implements SwipeRefreshLa
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         refreshLayout.setColorSchemeColors(Color.RED, Color.BLUE, Color.GREEN);
         refreshLayout.setOnRefreshListener(this);
-        newsAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
-            @Override
-            public void onLoadMoreRequested() {
-                onLoadMore();
-            }
-        },recyclerView);
+        newsAdapter.setOnLoadMoreListener(this, recyclerView);
+//        newsAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+//            @Override
+//            public void onLoadMoreRequested() {
+//                onLoadMore();
+//            }
+//        },recyclerView);
 
     }
 
@@ -104,53 +106,71 @@ public class TabOneFragment extends BaseCompatFragment implements SwipeRefreshLa
      */
     @Override
     public void onRefresh() {
-        Log.d("jiejie","2222222222222");
-        OkGo.<GankResponse<List<GankModel>>>get(url + "1")
+        newsAdapter.setEnableLoadMore(false); // 这里的作用是防止下拉刷新的时候还可以上拉加载
+        OkGo.<GankResponse<List<GankModel>>>get(url + 1)
                 .execute(new JsonCallback<GankResponse<List<GankModel>>>() {
                     @Override
                     public void onSuccess(Response<GankResponse<List<GankModel>>> response) {
+                        Log.d("jiejie", "---" + url + 1);
                         List<GankModel> results = response.body().results;
-                        if(results !=null) {
+                        if (results != null) {
+                            currentPage = 2;
                             newsAdapter.setNewData(results);
                         }
+                        // 如果有跟布局，可能需要移除之前添加的布局
+                        newsAdapter.removeAllFooterView();
+                        // newsAdapter.setEnableLoadMore(true);
+                        refreshLayout.setRefreshing(false);
                     }
 
                     @Override
-                    public void onFinish() {
-                        //可能需要移除之前添加的布局
-                        newsAdapter.removeAllFooterView();
-                        //最后调用结束刷新的方法
-                        setRefreshing(false);
+                    public void onError(String errMessage) {
+                        //  newsAdapter.setEnableLoadMore(true);
+                        refreshLayout.setRefreshing(false);
+                        Log.d("jiejie", "---" + url + 1 + "   " + errMessage);
                     }
+
+//                    @Override
+//                    public void onFinish() {
+//                        //可能需要移除之前添加的布局
+//                        Log.d("jiejie","-------你好啊");
+//                      //  newsAdapter.removeAllFooterView();
+//                        //最后调用结束刷新的方法
+//                        setRefreshing(false);
+//                    }
                 });
     }
+
 
     /**
      * 上拉加载
      */
-    private void onLoadMore(){
+    @Override
+    public void onLoadMoreRequested() {
+        Log.d("jiejie", "上拉加载" + url + currentPage);
         OkGo.<GankResponse<List<GankModel>>>get(url + currentPage)
                 .execute(new JsonCallback<GankResponse<List<GankModel>>>() {
                     @Override
                     public void onSuccess(Response<GankResponse<List<GankModel>>> response) {
+                        Log.d("jiejie", "---" + url + currentPage);
                         List<GankModel> results = response.body().results;
                         if (results != null && results.size() > 0) {
                             currentPage++;
                             newsAdapter.addData(results);
+                            newsAdapter.loadMoreComplete(); // 这个必须回调
                         } else {
                             //显示没有更多数据
-                            newsAdapter.loadMoreComplete();
-                            View noDataView = View.inflate(getActivity(),R.layout.item_no_data,null);
-                            //View noDataView = inflater.inflate(R.layout.item_no_data, (ViewGroup) recyclerView.getParent(), false);
+                            newsAdapter.loadMoreEnd(true); // 不加载了
+                            View noDataView = View.inflate(getActivity(), R.layout.item_no_data, null);
                             newsAdapter.addFooterView(noDataView);
                         }
                     }
 
                     @Override
-                    public void onError(Response<GankResponse<List<GankModel>>> response) {
-                        super.onError(response);
+                    public void onError(String errMessage) {
+                        Log.d("jiejie", "---" + url + currentPage + "   " + errMessage);
                         //显示数据加载失败,点击重试
-                       // newsAdapter.showLoadMoreFailedView();
+                        newsAdapter.loadMoreFail();
                     }
                 });
     }

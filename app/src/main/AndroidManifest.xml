@@ -40,7 +40,8 @@
         <service android:name=".service.DownloadService" />
 
         <activity android:name=".view.activity.WebActivity" />
-        <activity android:name=".view.activity.ChatActivity"></activity>
+        <activity android:name=".view.activity.ChatActivity" />
+        <activity android:name=".view.activity.EvaluationActivity"/>
     </application>
 
 </manifest>

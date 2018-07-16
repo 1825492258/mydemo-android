@@ -37,8 +37,8 @@ public class ThreeFragment extends BaseCompatFragment {
     @Override
     public void initUI(Bundle savedInstanceState) {
         Log.d("jiejie","ThreeFragment  Bundle");
-        StatusBarUtil.immersive(mActivity);
-        StatusBarUtil.setPaddingSmart(mActivity,mText);
+     //   StatusBarUtil.immersive(mActivity);
+     //   StatusBarUtil.setPaddingSmart(mActivity,mText);
     }
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {

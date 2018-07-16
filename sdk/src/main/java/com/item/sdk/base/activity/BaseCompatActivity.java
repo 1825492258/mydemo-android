@@ -36,12 +36,18 @@ public abstract class BaseCompatActivity extends SupportActivity {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
 
+    /**
+     * Activity创建
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         init(savedInstanceState);
     }
 
+    /**
+     * Activity销毁
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();
