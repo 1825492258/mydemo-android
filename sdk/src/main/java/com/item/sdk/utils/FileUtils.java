@@ -135,7 +135,6 @@ public class FileUtils {
         BufferedOutputStream outbuff = null;
 
         try {
-
             input = new FileInputStream(sourcefile);
             inbuff = new BufferedInputStream(input);
 
@@ -166,7 +165,7 @@ public class FileUtils {
     }
 
     /**
-     * 保存文件到本机
+     * 保存ImageView到本机
      *
      * @param context            context
      * @param fileName           文件名
@@ -178,7 +177,7 @@ public class FileUtils {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                File appDir = new File(Environment.getExternalStorageDirectory(), "yizhi");
+                File appDir = new File(Environment.getExternalStorageDirectory(), "image");
                 if (!appDir.exists()) {
                     appDir.mkdir();
                 }

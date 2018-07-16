@@ -30,6 +30,8 @@ import com.item.sdk.utils.FileUtils;
 import com.item.sdk.utils.ResourcesUtils;
 import com.item.sdk.utils.ToastUtils;
 
+import java.io.File;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import item.com.demo.R;
@@ -122,6 +124,28 @@ public class ImageBrowseActivity extends BaseCompatActivity {
                     public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
                         // 在这里添加一些图片加载完成的操作
                         pbPicBrowse.setVisibility(View.GONE);
+                    }
+                });
+
+        Glide.with(this).asDrawable().load("")
+                .into(new SimpleTarget<Drawable>() {
+                    @Override
+                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+
+                    }
+                });
+        Glide.with(this).asBitmap().load("")
+                .into(new SimpleTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+
+                    }
+                });
+        Glide.with(this).asFile().load("")
+                .into(new SimpleTarget<File>() {
+                    @Override
+                    public void onResourceReady(@NonNull File resource, @Nullable Transition<? super File> transition) {
+
                     }
                 });
     }
