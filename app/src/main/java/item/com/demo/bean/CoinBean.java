@@ -1,6 +1,5 @@
 package item.com.demo.bean;
 
-import java.math.BigDecimal;
 
 /**
  * Created by wuzongjie on 2018/7/10

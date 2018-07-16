@@ -25,6 +25,7 @@ import java.io.InputStream;
  * 读取文件工具类
  */
 public class FileUtils {
+
     private static final String TAG = "FileUtils";
 
     /**
@@ -165,7 +166,7 @@ public class FileUtils {
     }
 
     /**
-     * 保存图片到本机
+     * 保存文件到本机
      *
      * @param context            context
      * @param fileName           文件名
@@ -229,7 +230,7 @@ public class FileUtils {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                File appDir = new File(Environment.getExternalStorageDirectory(), "yizhi");
+                File appDir = new File(Environment.getExternalStorageDirectory(), "image");
                 if (!appDir.exists()) {
                     appDir.mkdir();
                 }

@@ -41,7 +41,8 @@
 
         <activity android:name=".view.activity.WebActivity" />
         <activity android:name=".view.activity.ChatActivity" />
-        <activity android:name=".view.activity.EvaluationActivity"/>
+        <activity android:name=".view.activity.EvaluationActivity" />
+        <activity android:name=".view.activity.ImageBrowseActivity"></activity>
     </application>
 
 </manifest>

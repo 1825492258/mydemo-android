@@ -34,7 +34,8 @@ import item.com.demo.net.UrlFactory;
 /**
  * Created by wuzongjie on 2018/7/11
  */
-public class TabOneFragment extends BaseCompatFragment implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener {
+public class TabOneFragment extends BaseCompatFragment implements SwipeRefreshLayout.OnRefreshListener,
+        BaseQuickAdapter.RequestLoadMoreListener {
 
     @BindView(R.id.mTextView)
     TextView mText;
@@ -67,6 +68,8 @@ public class TabOneFragment extends BaseCompatFragment implements SwipeRefreshLa
         url = UrlFactory.URL_GANK_BASE + title + "/" + PAGE_SIZE + "/";
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         newsAdapter = new NewsAdapter(null);
+        // 添加空布局
+        newsAdapter.setEmptyView(com.item.sdk.R.layout.view_empty, (ViewGroup) recyclerView.getParent());
         newsAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
         newsAdapter.isFirstOnly(false);
         recyclerView.setAdapter(newsAdapter);
@@ -74,13 +77,6 @@ public class TabOneFragment extends BaseCompatFragment implements SwipeRefreshLa
         refreshLayout.setColorSchemeColors(Color.RED, Color.BLUE, Color.GREEN);
         refreshLayout.setOnRefreshListener(this);
         newsAdapter.setOnLoadMoreListener(this, recyclerView);
-//        newsAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
-//            @Override
-//            public void onLoadMoreRequested() {
-//                onLoadMore();
-//            }
-//        },recyclerView);
-
     }
 
     @Override

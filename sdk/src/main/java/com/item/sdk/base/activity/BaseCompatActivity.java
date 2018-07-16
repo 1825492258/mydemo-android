@@ -69,8 +69,8 @@ public abstract class BaseCompatActivity extends SupportActivity {
         setContentView(getLayoutId());
         ButterKnife.bind(this);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // 强制为竖屏
-        initView(savedInstanceState);
         initData();
+        initView(savedInstanceState);
         // 将Activity添加到栈
         AppManager.getAppManager().addActivity(this);
     }

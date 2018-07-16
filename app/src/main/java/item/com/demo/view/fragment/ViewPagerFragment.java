@@ -22,6 +22,7 @@ import butterknife.Unbinder;
 import item.com.demo.R;
 import item.com.demo.adapter.FramentAdapter;
 import item.com.demo.view.fragment.tab.TabOneFragment;
+import item.com.demo.view.fragment.tab.WelfareFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,7 +54,7 @@ public class ViewPagerFragment extends BaseCompatFragment {
         List<String> list = new ArrayList<>();
         list.add("Android");
         list.add("iOS");
-        list.add("前端");
+        list.add("福利");
         for (int i = 0; i < list.size(); i++) {
             switch (i) {
                 case 0:
@@ -63,7 +64,8 @@ public class ViewPagerFragment extends BaseCompatFragment {
                     fragments.add(TabOneFragment.newInstance(list.get(1)));
                     break;
                 case 2:
-                    fragments.add(TabOneFragment.newInstance(list.get(2)));
+                    fragments.add(WelfareFragment.newInstance());
+                    //fragments.add(TabOneFragment.newInstance(list.get(2)));
                     break;
             }
         }

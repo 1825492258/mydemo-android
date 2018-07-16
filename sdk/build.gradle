@@ -20,6 +20,14 @@ android {
         }
     }
 
+    signingConfigs {
+        release {
+            storeFile file("keystore/release.jks")
+            storePassword "123456"
+            keyAlias "release"
+            keyPassword "123456"
+        }
+    }
 }
 
 dependencies {

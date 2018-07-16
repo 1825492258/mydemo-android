@@ -1,5 +1,6 @@
 # mydemo-android
 MyDemo
+### 获取MD5: keytool -list -v -keystore app/keystore/release.jks
 
 ## 1.OkHttp-OkGo 网络请求
 ### https://github.com/jeasonlzy/okhttp-OkGo
@@ -20,5 +21,9 @@ MyDemo
 ### https://github.com/jeasonlzy/NineGridView
 
 ## 7.防QQ空间，使用九宫格空间
+
+## 8.生成二维码和扫描
+### https://github.com/yipianfengye/android-zxingLibrary
+
 
 
