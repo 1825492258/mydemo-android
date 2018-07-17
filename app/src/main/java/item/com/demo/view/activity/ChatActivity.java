@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -21,6 +22,7 @@ import com.item.sdk.utils.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,6 +35,8 @@ public class ChatActivity extends BaseCompatActivity {
         Intent intent = new Intent(context,ChatActivity.class);
         context.startActivity(intent);
     }
+    @BindView(R.id.refreshLayout)
+    SwipeRefreshLayout mRefresh;
     @BindView(R.id.myTitle)
     TextView mTitle;
     @BindView(R.id.recyclerView)
@@ -104,10 +108,35 @@ public class ChatActivity extends BaseCompatActivity {
                 recyclerView.scrollToPosition(mAdapter.getItemCount() - 1 );
             }
         });
-        List<Msg> d = new ArrayList<>();
-        d.add(new Msg("12"));
-        mAdapter.setNewData(d);
-        //mAdapter.addMes(new Msg("1111"));
+        mAdapter.setNewData(getData());
+
+        mRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                startUpFetch();
+            }
+        });
+    }
+
+    private void startUpFetch(){
+        recyclerView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mAdapter.addData(0,getData());
+
+                mRefresh.setRefreshing(false);
+            }
+        },800);
+    }
+    private List<Msg> getData (){
+        ArrayList<Msg> list = new ArrayList<>();
+        Random random = new Random();
+        for (int i=0; i<5 ;i++){
+            String name = "message" + random.nextInt(80);
+            Msg m = new Msg(name);
+            list.add(m);
+        }
+        return list;
     }
 
     @Override

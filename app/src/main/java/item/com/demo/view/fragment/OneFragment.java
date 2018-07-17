@@ -35,7 +35,7 @@ public class OneFragment extends BaseCompatFragment {
     RecyclerView recyclerView;
     @BindView(R.id.textButton)
     Button textButtone;
-
+    TextAdapter adapter;
     public static OneFragment newInstance() {
         Bundle args = new Bundle();
         OneFragment oneFragment = new OneFragment();
@@ -57,14 +57,14 @@ public class OneFragment extends BaseCompatFragment {
         for (int i = 0; i < 50; i++) {
             te.add("----" + i);
         }
-        TextAdapter adapter = new TextAdapter(te);
-        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                ToastUtils.showToast((String) adapter.getItem(position));
-                ChatActivity.show(getActivity());
-            }
-        });
+         adapter = new TextAdapter(te);
+//        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+//                ToastUtils.showToast((String) adapter.getItem(position));
+//                ChatActivity.show(getActivity());
+//            }
+//        });
         // 设置个动画
         adapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_BOTTOM);
         adapter.isFirstOnly(false);
@@ -78,8 +78,16 @@ public class OneFragment extends BaseCompatFragment {
                 EvaluationActivity.show(mActivity);
             }
         });
+        adapter.setTextInterface(new TextAdapter.MyTextInterface() {
+            @Override
+            public void onOne(int position) {
+                delete(position);
+            }
+        });
     }
-
+    private void delete(int position){
+        adapter.remove(position);
+    }
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);

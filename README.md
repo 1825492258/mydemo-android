@@ -25,5 +25,8 @@ MyDemo
 ## 8.生成二维码和扫描
 ### https://github.com/yipianfengye/android-zxingLibrary
 
+## 9.样式比TabLayout多样的Tab库 FlycoTabLayout
+### https://github.com/H07000223/FlycoTabLayout
+
 
 
