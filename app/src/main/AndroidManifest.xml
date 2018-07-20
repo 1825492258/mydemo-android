@@ -42,7 +42,8 @@
         <activity android:name=".view.activity.WebActivity" />
         <activity android:name=".view.activity.ChatActivity" />
         <activity android:name=".view.activity.EvaluationActivity" />
-        <activity android:name=".view.activity.ImageBrowseActivity"></activity>
+        <activity android:name=".view.activity.ImageBrowseActivity" />
+        <activity android:name=".view.activity.GirlsFragmentActivity" />
     </application>
 
 </manifest>

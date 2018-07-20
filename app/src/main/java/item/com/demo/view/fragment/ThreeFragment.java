@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.item.sdk.base.fragment.BaseCompatFragment;
@@ -15,6 +16,7 @@ import com.item.sdk.utils.StatusBarUtil;
 
 import butterknife.BindView;
 import item.com.demo.R;
+import item.com.demo.view.activity.GirlsFragmentActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,7 +24,7 @@ import item.com.demo.R;
 public class ThreeFragment extends BaseCompatFragment {
 
     @BindView(R.id.text)
-    TextView mText;
+    Button mText;
     public static ThreeFragment newInstance(){
         Bundle args = new Bundle();
         ThreeFragment oneFragment = new ThreeFragment();
@@ -39,6 +41,12 @@ public class ThreeFragment extends BaseCompatFragment {
         Log.d("jiejie","ThreeFragment  Bundle");
      //   StatusBarUtil.immersive(mActivity);
      //   StatusBarUtil.setPaddingSmart(mActivity,mText);
+        mText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                GirlsFragmentActivity.show(mActivity);
+            }
+        });
     }
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {

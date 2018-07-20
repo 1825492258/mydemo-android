@@ -1,6 +1,7 @@
 package item.com.demo.view.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -21,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.ImageViewTarget;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.target.ViewTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.item.sdk.base.activity.BaseCompatActivity;
@@ -41,7 +43,7 @@ import item.com.demo.R;
  */
 public class ImageBrowseActivity extends BaseCompatActivity {
 
-    public static void show(Activity activity, String url) {
+    public static void show(Context activity, String url) {
         Intent intent = new Intent(activity, ImageBrowseActivity.class);
         intent.putExtra("image_url", url);
         activity.startActivity(intent);
@@ -154,6 +156,8 @@ public class ImageBrowseActivity extends BaseCompatActivity {
         GlideApp.with(ImageBrowseActivity.this)
                 .load(mImageUrl)
                 .centerCrop()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .override(Target.SIZE_ORIGINAL,Target.SIZE_ORIGINAL)
                 .into(new ImageViewTarget<Drawable>(pvPic) {
                     @Override
                     protected void setResource(@Nullable Drawable resource) {

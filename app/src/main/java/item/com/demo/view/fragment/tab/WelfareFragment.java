@@ -68,10 +68,6 @@ public class WelfareFragment extends BaseCompatFragment implements BaseQuickAdap
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
               WalfareBean.ResultsBean i= (WalfareBean.ResultsBean) adapter.getItem(position);
               ImageBrowseActivity.show(mActivity,i.getUrl());
-                // 点击
-//                Bundle bundle = new Bundle();
-//                bundle.putString("image_url",i.getUrl());
-//                startActivity(new Intent(mActivity, ImageBrowseActivity.class),bundle);
             }
         });
     }
