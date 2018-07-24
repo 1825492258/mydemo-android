@@ -48,7 +48,7 @@ dependencies {
     implementation "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
 
-    implementation ('com.alibaba.android:ultraviewpager:1.0.7.7@aar') {
+    implementation('com.alibaba.android:ultraviewpager:1.0.7.7@aar') {
         transitive = true
     }
 

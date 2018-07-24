@@ -6,6 +6,8 @@ import android.content.Context;
 import android.util.DisplayMetrics;
 import android.widget.Toast;
 
+import java.lang.reflect.Field;
+
 /**
  * Toast 工具类封装
  * 以及Android dp和px的转换
@@ -67,6 +69,7 @@ public class ToastUtils {
             }
         });
     }
+
     /**
      * 将px值转换为dp值
      */
@@ -102,18 +105,38 @@ public class ToastUtils {
     /**
      * 获取屏幕宽度
      */
-    public static int getScreenWidthPixels(Activity context) {
-        DisplayMetrics metric = new DisplayMetrics();
-        context.getWindowManager().getDefaultDisplay().getMetrics(metric);
-        return metric.widthPixels;
+    public static int getScreenWidthPixels(Context context) {
+        if (context == null) return 0;
+        DisplayMetrics dm = context.getResources().getDisplayMetrics();
+        return dm.widthPixels;
     }
 
     /**
      * 获取屏幕高度
+     * 然后需要再去出通知栏的高度
      */
-    public static int getScreenHeightPixels(Activity context) {
-        DisplayMetrics metric = new DisplayMetrics();
-        context.getWindowManager().getDefaultDisplay().getMetrics(metric);
-        return metric.heightPixels;
+    public static int getScreenHeightPixels(Context context) {
+        if (context == null) return 0;
+        DisplayMetrics dm = context.getResources().getDisplayMetrics();
+        return dm.heightPixels - getStatusBarHeight(context);
+    }
+    /**
+     * 获取通知栏高度
+     *
+     * @param context 上下文
+     * @return 通知栏高度
+     */
+    public static int getStatusBarHeight(Context context) {
+        int statusBarHeight = 0;
+        try {
+            Class<?> clazz = Class.forName("com.android.internal.R$dimen");
+            Object obj = clazz.newInstance();
+            Field field = clazz.getField("status_bar_height");
+            int temp = Integer.parseInt(field.get(obj).toString());
+            statusBarHeight = context.getResources().getDimensionPixelSize(temp);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return statusBarHeight;
     }
 }

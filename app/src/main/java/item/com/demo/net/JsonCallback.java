@@ -111,6 +111,7 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
      */
     @Override
     public void onError(com.lzy.okgo.model.Response<T> response) {
+        super.onError(response);
         Throwable exception = response.getException();
         if (exception != null) exception.printStackTrace();
         if (exception instanceof UnknownHostException || exception instanceof ConnectException) {
@@ -134,6 +135,5 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
             onError("未知错误");
         }
     }
-
     public abstract void onError(String errMessage);
 }

@@ -102,6 +102,7 @@ public class TabOneFragment extends BaseCompatFragment implements SwipeRefreshLa
      */
     @Override
     public void onRefresh() {
+        Log.d("jiejie","开始加载");
         newsAdapter.setEnableLoadMore(false); // 这里的作用是防止下拉刷新的时候还可以上拉加载
         OkGo.<GankResponse<List<GankModel>>>get(url + 1)
                 .execute(new JsonCallback<GankResponse<List<GankModel>>>() {
@@ -122,6 +123,7 @@ public class TabOneFragment extends BaseCompatFragment implements SwipeRefreshLa
                     @Override
                     public void onError(String errMessage) {
                         //  newsAdapter.setEnableLoadMore(true);
+                        Log.d("jiejie"," 请求失败" );
                         refreshLayout.setRefreshing(false);
                         Log.d("jiejie", "---" + url + 1 + "   " + errMessage);
                     }
