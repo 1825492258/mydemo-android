@@ -1,5 +1,5 @@
 # mydemo-android
-MyDemo
+MyDemo 随便写的demo
 ### 获取MD5: keytool -list -v -keystore app/keystore/release.jks
 
 ### 1.OkHttp-OkGo 网络请求
@@ -21,7 +21,8 @@ MyDemo
 ### 6.NineGridView展示图片的九宫格控件
 ### https://github.com/jeasonlzy/NineGridView
 
-### 7.仿QQ空间，使用九宫格空间
+### 7.独立的侧滑删除
+### https://github.com/anzaizai/EasySwipeMenuLayout
 
 ### 8.生成二维码和扫描
 ### https://github.com/yipianfengye/android-zxingLibrary

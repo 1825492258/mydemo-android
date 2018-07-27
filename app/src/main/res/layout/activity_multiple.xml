@@ -6,10 +6,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".view.activity.MultipleActivity">
+    <com.smoke.zhangchen.floatviewlib.FloatView
+        android:id="@+id/float_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:defaultViewText="正在生成中"
+        app:childTextColor="@color/md_red_500"
+        app:childViewBackground="@drawable/shape_circle"
+        app:parentViewBackground="@mipmap/star_bg"
+        app:chidTextSize="6sp"/>
+
     <TextView
         android:text="多布局"
         android:textSize="16sp"
         android:gravity="center"
+        android:visibility="gone"
         android:textColor="@color/md_white"
         android:background="@color/md_red_700"
         android:layout_width="match_parent"
