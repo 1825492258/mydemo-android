@@ -29,6 +29,7 @@ import me.yokeyword.fragmentation.SupportFragment;
  * 这个是主界面
  */
 public class MainActivity extends BaseCompatActivity {
+
     public static final int FIRST = 0;
     public static final int SECOND = 1;
     public static final int THIRD = 2;
@@ -111,7 +112,6 @@ public class MainActivity extends BaseCompatActivity {
                         } else {
                             Log.d("jiejie", response.body().getCode() + "");
                         }
-
                     }
                 });
     }
@@ -130,7 +130,7 @@ public class MainActivity extends BaseCompatActivity {
 
                     @Override
                     public void onSuccess(Response<HttpResult<CoinBean>> response) {
-                        Log.d("jiejie", "----" + response.body().getData().getAddress());
+                    //    Log.d("jiejie", "----" + response.body().getData().getAddress());
                     }
                 });
     }
