@@ -141,7 +141,7 @@ public class TabOneFragment extends BaseCompatFragment implements SwipeRefreshLa
 
 
     /**
-     * 上拉加载
+     * 上拉加载下一页
      */
     @Override
     public void onLoadMoreRequested() {
@@ -155,10 +155,11 @@ public class TabOneFragment extends BaseCompatFragment implements SwipeRefreshLa
                         if (results != null && results.size() > 0) {
                             currentPage++;
                             newsAdapter.addData(results);
+                            // 加载完成（注意不是加载结束，而是本次数据加载结束并且还有下页数据）
                             newsAdapter.loadMoreComplete(); // 这个必须回调
                         } else {
-                            //显示没有更多数据
-                            newsAdapter.loadMoreEnd(true); // 不加载了
+                            // 数据全部加载完毕 不再加载了
+                            newsAdapter.loadMoreEnd();
                             View noDataView = View.inflate(getActivity(), R.layout.item_no_data, null);
                             newsAdapter.addFooterView(noDataView);
                         }
@@ -167,7 +168,7 @@ public class TabOneFragment extends BaseCompatFragment implements SwipeRefreshLa
                     @Override
                     public void onError(String errMessage) {
                         Log.d("jiejie", "---" + url + currentPage + "   " + errMessage);
-                        //显示数据加载失败,点击重试
+                        // 获取更多数据失败,点击重试
                         newsAdapter.loadMoreFail();
                     }
                 });

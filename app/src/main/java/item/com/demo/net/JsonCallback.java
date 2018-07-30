@@ -15,8 +15,6 @@
  */
 package item.com.demo.net;
 
-import android.util.Log;
-
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import com.lzy.okgo.callback.AbsCallback;
