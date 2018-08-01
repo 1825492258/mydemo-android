@@ -44,7 +44,9 @@
         <activity android:name=".view.activity.EvaluationActivity" />
         <activity android:name=".view.activity.ImageBrowseActivity" />
         <activity android:name=".view.activity.GirlsFragmentActivity" />
-        <activity android:name=".view.activity.MultipleActivity"></activity>
+        <activity android:name=".view.activity.MultipleActivity" />
+        <activity android:name=".view.activity.MovieDetailActivity" />
+        <activity android:name=".view.activity.TextActivity"></activity>
     </application>
 
 </manifest>

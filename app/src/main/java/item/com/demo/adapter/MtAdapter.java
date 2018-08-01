@@ -33,7 +33,7 @@ public class MtAdapter extends BaseQuickAdapter<Girl, BaseViewHolder> {
         GlideUrl glideUrl = new GlideUrl(item.getUrl(), new LazyHeaders.Builder()
                 .addHeader("Referer", item.getRefer())
                 .build());
-
+       
         GlideApp.with(mContext)
                 .load(glideUrl)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)

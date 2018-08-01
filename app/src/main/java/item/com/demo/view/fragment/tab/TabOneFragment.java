@@ -130,7 +130,7 @@ public class TabOneFragment extends BaseCompatFragment implements SwipeRefreshLa
 
 //                    @Override
 //                    public void onFinish() {
-//                        //可能需要移除之前添加的布局
+//                        //可能需要移除之前添加的布局 android
 //                        Log.d("jiejie","-------你好啊");
 //                      //  newsAdapter.removeAllFooterView();
 //                        //最后调用结束刷新的方法

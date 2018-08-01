@@ -7,23 +7,20 @@
     android:orientation="vertical"
     tools:context=".view.activity.WebActivity">
 
-    <TextView
-        android:id="@+id/title"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
+        android:background="?attr/colorPrimary"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/themeColor"
-        android:gravity="center"
-        android:text="@string/app_name"
-        android:textColor="#fff"
-        android:textSize="18sp" />
-
+        app:popupTheme="@style/AppTheme.ToolbarPopupOverlay"
+        app:titleTextColor="@color/white" />
     <ProgressBar
         android:id="@+id/pb"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:indeterminate="false"
-        android:minHeight="3dp"
+        android:minHeight="5dp"
         android:progressDrawable="@drawable/progress_bar_states" />
 
     <WebView
