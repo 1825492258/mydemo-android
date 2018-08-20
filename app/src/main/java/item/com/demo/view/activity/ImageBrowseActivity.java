@@ -1,10 +1,8 @@
 package item.com.demo.view.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -12,7 +10,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -23,11 +20,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.ImageViewTarget;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
-import com.bumptech.glide.request.target.ViewTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.item.sdk.base.activity.BaseCompatActivity;
 import com.item.sdk.global.GlideApp;
-import com.item.sdk.utils.AppUtils;
 import com.item.sdk.utils.FileUtils;
 import com.item.sdk.utils.ResourcesUtils;
 import com.item.sdk.utils.ToastUtils;
@@ -35,7 +30,6 @@ import com.item.sdk.utils.ToastUtils;
 import java.io.File;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import item.com.demo.R;
 
 /**
@@ -82,8 +76,6 @@ public class ImageBrowseActivity extends BaseCompatActivity {
      * 如果是6.0手机，记得先申请权限，拿到权限后，再保存，不然会失败，我就是在这里被坑了
      */
     private void save() {
-//        Bitmap icon = BitmapFactory.decodeResource(this.getResources(),
-//                R.drawable.we);
         FileUtils.saveBitmap(this, mImageUrl, ((BitmapDrawable) m).getBitmap(), new FileUtils.SaveResultCallback() {
             @Override
             public void onSavedSuccess() {

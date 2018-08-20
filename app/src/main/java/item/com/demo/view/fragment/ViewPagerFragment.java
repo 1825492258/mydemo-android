@@ -5,20 +5,11 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.item.sdk.base.fragment.BaseCompatFragment;
 import com.item.sdk.utils.StatusBarUtil;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import item.com.demo.R;
 import item.com.demo.adapter.FramentAdapter;
 import item.com.demo.view.fragment.tab.TabOneFragment;
@@ -65,7 +56,6 @@ public class ViewPagerFragment extends BaseCompatFragment {
                     break;
                 case 2:
                     fragments.add(WelfareFragment.newInstance());
-                    //fragments.add(TabOneFragment.newInstance(list.get(2)));
                     break;
             }
         }
@@ -75,7 +65,6 @@ public class ViewPagerFragment extends BaseCompatFragment {
         mViewPager.setCurrentItem(0); // 要设置到viewpager.setAdapter后才起作用
         //关联ViewPager和TabLayout
         mTab.setupWithViewPager(mViewPager);
-        //  mTab.setVerticalScrollbarPosition(0);
         //tlTabs.setupWithViewPager方法内部会remove所有的tabs，这里重新设置一遍tabs的text，否则tabs的text不显示
 //        //设置分割线
 //        LinearLayout linear = (LinearLayout)tabLayout.getChildAt(0);

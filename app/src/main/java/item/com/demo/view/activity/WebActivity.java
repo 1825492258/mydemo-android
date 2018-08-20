@@ -1,7 +1,6 @@
 package item.com.demo.view.activity;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,13 +11,8 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
-import android.widget.TextView;
-
 import com.item.sdk.base.activity.BaseCompatActivity;
-import com.item.sdk.utils.StatusBarUtil;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import item.com.demo.R;
 
 /**
@@ -26,8 +20,8 @@ import item.com.demo.R;
  */
 public class WebActivity extends BaseCompatActivity {
 
-    public final static String URL = "url";
-    public final static String TITLE = "title";
+    public  static final String URL = "url";
+    public  static final String TITLE = "title";
    @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.pb)
@@ -62,7 +56,7 @@ public class WebActivity extends BaseCompatActivity {
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void initView(Bundle savedInstanceState) {
-      //  StatusBarUtil.immersive(this);
+
         String url = getIntent().getStringExtra(URL);
         String title = getIntent().getStringExtra(TITLE);
         initTitleBar(toolbar,title);

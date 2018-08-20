@@ -113,18 +113,14 @@ public class MztuFragment extends BaseCompatFragment implements BaseQuickAdapter
                     @Override
                     public List<Girl> convertResponse(okhttp3.Response response) throws Throwable {
                         List<Girl> girls = new ArrayList<>();
-                        try {
-                            Document doc = Jsoup.connect(url + current).timeout(10000).get();
-                            Element total = doc.select("div.postlist").first();
-                            Elements items = total.select("li");
-                            for (Element element : items) {
-                                Girl girl = new Girl(element.select("img").first().attr("data-original"));
-                                girl.setLink(element.select("a[href]").attr("href"));
-                                girl.setRefer(fakeRefer);
-                                girls.add(girl);
-                            }
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                        Document doc = Jsoup.connect(url + current).timeout(10000).get();
+                        Element total = doc.select("div.postlist").first();
+                        Elements items = total.select("li");
+                        for (Element element : items) {
+                            Girl girl = new Girl(element.select("img").first().attr("data-original"));
+                            girl.setLink(element.select("a[href]").attr("href"));
+                            girl.setRefer(fakeRefer);
+                            girls.add(girl);
                         }
                         return girls;
                     }

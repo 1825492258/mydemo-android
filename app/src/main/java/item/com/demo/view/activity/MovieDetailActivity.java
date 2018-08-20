@@ -20,6 +20,7 @@ import com.item.sdk.base.activity.BaseCompatActivity;
 import com.item.sdk.global.GlideApp;
 import com.item.sdk.utils.ResourcesUtils;
 import com.item.sdk.utils.StatusBarUtil;
+import com.item.sdk.utils.ToastUtils;
 import com.item.sdk.widgets.CompatNestedScrollView;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
@@ -128,7 +129,7 @@ public class MovieDetailActivity extends BaseCompatActivity {
                 .execute(new JsonCallback<MovieDetailBean>() {
                     @Override
                     public void onError(String errMessage) {
-
+                        ToastUtils.showToast(errMessage);
                     }
 
                     @Override

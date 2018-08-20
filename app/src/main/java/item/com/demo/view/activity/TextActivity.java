@@ -11,8 +11,7 @@ import butterknife.BindView;
 import item.com.demo.R;
 
 public class TextActivity extends BaseCompatActivity {
-   // @BindView(R.id.toolbar)
- //   Toolbar toolbar;
+
     @BindView(R.id.imageView)
     ImageView imageView;
     @BindView(R.id.textTitle)

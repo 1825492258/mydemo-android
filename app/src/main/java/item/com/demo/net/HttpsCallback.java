@@ -52,14 +52,6 @@ public abstract class HttpsCallback<T> extends AbsCallback<T> {
         }
     }
 
-//    /**
-//     * UI 线程，请求成功后的回调
-//     */
-//    @Override
-//    public void onSuccess(Response<T> response) {
-//
-//    }
-
     /**
      * UI 线程，请求失败的回调
      */

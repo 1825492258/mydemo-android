@@ -25,7 +25,6 @@ import java.util.List;
 import java.util.Random;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import item.com.demo.R;
 import item.com.demo.adapter.MsgAdapter;
 import item.com.demo.bean.Msg;
@@ -51,27 +50,12 @@ public class ChatActivity extends BaseCompatActivity {
     protected int getLayoutId() {
         return R.layout.activity_chat;
     }
-    /**
-     * 处理软件盘智能弹出和隐藏
-     */
-//    @Override
-//    public boolean dispatchTouchEvent(MotionEvent ev) {
-//        switch (ev.getAction()) {
-//            case MotionEvent.ACTION_DOWN:
-//                View view = getCurrentFocus();
-//
-//                  editKeyboard(ev, view, this);
-//
-//                break;
-//            default:
-//                break;
-//        }
-//        return super.dispatchTouchEvent(ev);
-//    }
+
+
 
     public static void editKeyboard(MotionEvent event, View view, Activity activity) {
         try {
-            if (view != null && view instanceof EditText) {
+            if ( view instanceof EditText) {
                 int[] location = {0, 0};
                 view.getLocationInWindow(location);
                 int left = location[0], top = location[1], right = left
@@ -91,8 +75,8 @@ public class ChatActivity extends BaseCompatActivity {
     }
     @Override
     protected void initView(Bundle savedInstanceState) {
-       // StatusBarUtil.immersive(this);
-       // StatusBarUtil.setPaddingSmart(this,mTitle);
+        StatusBarUtil.immersive(this);
+        StatusBarUtil.setPaddingSmart(this,mTitle);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);

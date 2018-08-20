@@ -8,7 +8,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -21,8 +20,6 @@ import com.lzy.okgo.model.Response;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import item.com.demo.R;
 import item.com.demo.adapter.NewsAdapter;
 import item.com.demo.bean.GankModel;
@@ -102,13 +99,11 @@ public class TabOneFragment extends BaseCompatFragment implements SwipeRefreshLa
      */
     @Override
     public void onRefresh() {
-        Log.d("jiejie","开始加载");
         newsAdapter.setEnableLoadMore(false); // 这里的作用是防止下拉刷新的时候还可以上拉加载
         OkGo.<GankResponse<List<GankModel>>>get(url + 1)
                 .execute(new JsonCallback<GankResponse<List<GankModel>>>() {
                     @Override
                     public void onSuccess(Response<GankResponse<List<GankModel>>> response) {
-                        Log.d("jiejie", "---" + url + 1);
                         List<GankModel> results = response.body().results;
                         if (results != null) {
                             currentPage = 2;
@@ -116,22 +111,17 @@ public class TabOneFragment extends BaseCompatFragment implements SwipeRefreshLa
                         }
                         // 如果有跟布局，可能需要移除之前添加的布局
                         newsAdapter.removeAllFooterView();
-                        // newsAdapter.setEnableLoadMore(true);
                         refreshLayout.setRefreshing(false);
                     }
 
                     @Override
                     public void onError(String errMessage) {
-                        //  newsAdapter.setEnableLoadMore(true);
-                        Log.d("jiejie"," 请求失败" );
                         refreshLayout.setRefreshing(false);
-                        Log.d("jiejie", "---" + url + 1 + "   " + errMessage);
                     }
 
 //                    @Override
 //                    public void onFinish() {
 //                        //可能需要移除之前添加的布局 android
-//                        Log.d("jiejie","-------你好啊");
 //                      //  newsAdapter.removeAllFooterView();
 //                        //最后调用结束刷新的方法
 //                        setRefreshing(false);
@@ -145,7 +135,6 @@ public class TabOneFragment extends BaseCompatFragment implements SwipeRefreshLa
      */
     @Override
     public void onLoadMoreRequested() {
-        Log.d("jiejie", "上拉加载" + url + currentPage);
         OkGo.<GankResponse<List<GankModel>>>get(url + currentPage)
                 .execute(new JsonCallback<GankResponse<List<GankModel>>>() {
                     @Override

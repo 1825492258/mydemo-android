@@ -1,25 +1,17 @@
 package item.com.demo.view.fragment.tab;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.item.sdk.base.fragment.BaseCompatFragment;
 import com.item.sdk.utils.ToastUtils;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
-
 import java.util.List;
-
 import butterknife.BindView;
 import item.com.demo.R;
 import item.com.demo.adapter.WelfareAdapter;
@@ -87,7 +79,7 @@ public class WelfareFragment extends BaseCompatFragment implements BaseQuickAdap
                 .execute(new JsonCallback<WalfareBean>() {
                     @Override
                     public void onError(String errMessage) {
-
+                        ToastUtils.showToast(errMessage);
                     }
 
                     @Override
@@ -114,7 +106,7 @@ public class WelfareFragment extends BaseCompatFragment implements BaseQuickAdap
                     @Override
                     public void onSuccess(Response<WalfareBean> response) {
                         List<WalfareBean.ResultsBean> result = response.body().getResults();
-                        if (result != null && result.size() > 0) {
+                        if (result != null && result.isEmpty()) {
                             currentPage++;
                             mAdapter.addData(result);
                             mAdapter.loadMoreComplete();

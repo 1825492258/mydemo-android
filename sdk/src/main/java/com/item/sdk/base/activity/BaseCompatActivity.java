@@ -9,8 +9,6 @@ import android.support.v7.app.AppCompatDelegate;
 import android.view.inputmethod.InputMethodManager;
 
 import com.item.sdk.AppManager;
-import com.item.sdk.base.IBaseView;
-import com.item.sdk.global.GlobalApplication;
 import com.item.sdk.utils.AppUtils;
 import com.item.sdk.utils.SPManagerUtils;
 import com.item.sdk.utils.ThemeUtils;

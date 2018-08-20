@@ -13,22 +13,17 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.item.sdk.base.fragment.BaseCompatFragment;
-import com.item.sdk.utils.StatusBarUtil;
 import com.item.sdk.utils.ToastUtils;
 import com.tmall.ultraviewpager.UltraViewPager;
 import com.tmall.ultraviewpager.transformer.UltraDepthScaleTransformer;
-import com.tmall.ultraviewpager.transformer.UltraScaleTransformer;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -55,7 +50,6 @@ public class ThreeFragment extends BaseCompatFragment {
     UltraViewPager ultraViewPager;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
-    private SpikeAdapter adapter;
     @BindView(R.id.btnToOther)
     Button btnToOther;
     public static ThreeFragment newInstance() {
@@ -84,9 +78,9 @@ public class ThreeFragment extends BaseCompatFragment {
         for (int i = 0; i < 8; i++) {
             a.add("-" + i);
         }
-        adapter = new SpikeAdapter(R.layout.adapter_spike, a);
-        recyclerView.setAdapter(adapter);
-        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+        SpikeAdapter  spikeAdapter = new SpikeAdapter(R.layout.adapter_spike, a);
+        recyclerView.setAdapter(spikeAdapter);
+        spikeAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 MultipleActivity.show(getActivity());
@@ -152,8 +146,8 @@ public class ThreeFragment extends BaseCompatFragment {
     private void initUltra() {
         ultraViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
         // UltraPagerAdapter 绑定子view到UltraViewPager
-        PagerAdapter adapter = new UlTraPagerAdapter(null);
-        ultraViewPager.setAdapter(adapter);
+        PagerAdapter pagerAdapter = new UlTraPagerAdapter(null);
+        ultraViewPager.setAdapter(pagerAdapter);
         ultraViewPager.setMultiScreen(0.6f);
 //        ultraViewPager.setItemRatio(1.0f);
 //        ultraViewPager.setRatio(2.0f);

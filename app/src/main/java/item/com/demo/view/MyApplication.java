@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.item.sdk.global.GlideApp;
 import com.item.sdk.global.GlobalApplication;
 import com.lzy.ninegrid.NineGridView;
@@ -27,9 +26,6 @@ public class MyApplication extends GlobalApplication{
 
         @Override
         public void onDisplayImage(Context context, ImageView imageView, String url) {
-//            GlideApp.with(context).load(url)
-//                    .centerCrop()
-//                    .into()
             GlideApp.with(context).load(url)
                     .centerCrop()
                     .placeholder(R.drawable.default_portrait)

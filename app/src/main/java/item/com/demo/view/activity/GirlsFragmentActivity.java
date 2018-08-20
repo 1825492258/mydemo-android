@@ -3,14 +3,11 @@ package item.com.demo.view.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.View;
 
 import com.item.sdk.base.activity.BaseCompatActivity;
 
@@ -46,12 +43,10 @@ public class GirlsFragmentActivity extends BaseCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
     }
-    private List<Fragment> fragments;
-    private List<String> title;
+
     private void setupViewPager(ViewPager viewPager) {
-        fragments = new ArrayList<>();
-        title = new ArrayList<>();
-        // ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
+        List<Fragment> fragments = new ArrayList<>();
+        List<String> title = new ArrayList<>();
 
         fragments.add(MztuFragment.newInstance("http://www.mzitu.com/hot"));
         title.add("最热");
@@ -80,11 +75,8 @@ public class GirlsFragmentActivity extends BaseCompatActivity {
         private  List<Fragment> mFragmentList ;
         private List<String> mFragmentTitleList;
 
-        private ViewPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
 
-        public ViewPagerAdapter(FragmentManager fm, List<Fragment> mFragmentList,
+        private ViewPagerAdapter(FragmentManager fm, List<Fragment> mFragmentList,
                                 List<String> mFragmentTitleList) {
             super(fm);
             this.mFragmentList = mFragmentList;

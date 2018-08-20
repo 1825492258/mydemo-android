@@ -5,6 +5,7 @@ import android.util.Log;
 import android.widget.RadioGroup;
 
 import com.item.sdk.base.activity.BaseCompatActivity;
+import com.item.sdk.utils.ToastUtils;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 
@@ -43,7 +44,7 @@ public class MainActivity extends BaseCompatActivity {
         getIntent().getExtras();
 
         if (savedInstanceState == null) {
-           // 正常
+            // 正常
             fragmentActivity[FIRST] = OneFragment.newInstance();
             fragmentActivity[SECOND] = TwoFragment.newInstance();
             fragmentActivity[THIRD] = ThreeFragment.newInstance();
@@ -60,6 +61,7 @@ public class MainActivity extends BaseCompatActivity {
             fragmentActivity[SECOND] = findFragment(TwoFragment.class);
             fragmentActivity[THIRD] = findFragment(ThreeFragment.class);
             fragmentActivity[FOURTH] = findFragment(FourFragment.class);
+            getHttp();
         }
 
         /*
@@ -81,6 +83,9 @@ public class MainActivity extends BaseCompatActivity {
                     case R.id.home_tab_four:
                         showHideFragment(fragmentActivity[FOURTH]);
                         break;
+                    default:
+                        showHideFragment(fragmentActivity[FIRST]);
+                        break;
                 }
             }
         });
@@ -96,16 +101,13 @@ public class MainActivity extends BaseCompatActivity {
                 .execute(new HttpsCallback<HttpResult<LoginBean>>() {
                     @Override
                     public void onError(String errMessage) {
-                        Log.d("jiejie", "---" + errMessage);
+                        ToastUtils.showToast(errMessage);
                     }
 
                     @Override
                     public void onSuccess(Response<HttpResult<LoginBean>> response) {
                         if (response.body().getData() != null) {
-                            Log.d("jiejie", response.body().getData().getToken());
                             getCoin(response.body().getData().getToken());
-                        } else {
-                            Log.d("jiejie", response.body().getCode() + "");
                         }
                     }
                 });
@@ -125,7 +127,7 @@ public class MainActivity extends BaseCompatActivity {
 
                     @Override
                     public void onSuccess(Response<HttpResult<CoinBean>> response) {
-                    //    Log.d("jiejie", "----" + response.body().getData().getAddress());
+                        Log.d("jiejie","111");
                     }
                 });
     }
