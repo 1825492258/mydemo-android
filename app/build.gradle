@@ -62,4 +62,8 @@ dependencies {
     // glide-transformations
     implementation 'jp.wasabeef:glide-transformations:3.3.0'
     implementation 'org.jsoup:jsoup:1.11.2'
+
+    annotationProcessor "com.github.Raizlabs.DBFlow:dbflow-processor:$rootProject.dbflow_version"
+    implementation "com.github.Raizlabs.DBFlow:dbflow-core:$rootProject.dbflow_version"
+    implementation "com.github.Raizlabs.DBFlow:dbflow:$rootProject.dbflow_version"
 }

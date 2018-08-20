@@ -103,7 +103,7 @@ public class MovieFragment extends BaseCompatFragment implements SwipeRefreshLay
                         setRefreshing(false);
                         List<SubBean.SubjectsBean> beans = response.body().getSubjects();
                         Log.d("jiejie","----" + mAdapter.getData().size());
-                        if(mAdapter.getData().size() == 0) {
+                        if(mAdapter.getData().isEmpty()) {
                             initHeadView();
                             mAdapter.setNewData(beans);
                         }else {

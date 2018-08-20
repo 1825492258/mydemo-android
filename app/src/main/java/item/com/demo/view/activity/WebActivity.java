@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.item.sdk.base.activity.BaseCompatActivity;
+import com.item.sdk.utils.StatusBarUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -61,6 +62,7 @@ public class WebActivity extends BaseCompatActivity {
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void initView(Bundle savedInstanceState) {
+      //  StatusBarUtil.immersive(this);
         String url = getIntent().getStringExtra(URL);
         String title = getIntent().getStringExtra(TITLE);
         initTitleBar(toolbar,title);

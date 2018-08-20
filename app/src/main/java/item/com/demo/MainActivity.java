@@ -4,18 +4,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.RadioGroup;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.item.sdk.base.activity.BaseCompatActivity;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 
-import java.util.List;
-
 import butterknife.BindView;
 import item.com.demo.bean.CoinBean;
 import item.com.demo.bean.LoginBean;
-import item.com.demo.bean.TextBean;
 import item.com.demo.net.HttpResult;
 import item.com.demo.net.HttpsCallback;
 import item.com.demo.net.UrlFactory;
@@ -34,7 +29,7 @@ public class MainActivity extends BaseCompatActivity {
     public static final int SECOND = 1;
     public static final int THIRD = 2;
     public static final int FOURTH = 3;
-    private SupportFragment[] mFragments = new SupportFragment[4];
+    private SupportFragment[] fragmentActivity = new SupportFragment[4];
     @BindView(R.id.home_tab_rg)
     RadioGroup mHomeGroup;
 
@@ -49,22 +44,22 @@ public class MainActivity extends BaseCompatActivity {
 
         if (savedInstanceState == null) {
            // 正常
-            mFragments[FIRST] = OneFragment.newInstance();
-            mFragments[SECOND] = TwoFragment.newInstance();
-            mFragments[THIRD] = ThreeFragment.newInstance();
-            mFragments[FOURTH] = FourFragment.newInstance();
+            fragmentActivity[FIRST] = OneFragment.newInstance();
+            fragmentActivity[SECOND] = TwoFragment.newInstance();
+            fragmentActivity[THIRD] = ThreeFragment.newInstance();
+            fragmentActivity[FOURTH] = FourFragment.newInstance();
             loadMultipleRootFragment(R.id.fl_container, FIRST,
-                    mFragments[FIRST],
-                    mFragments[SECOND],
-                    mFragments[THIRD],
-                    mFragments[FOURTH]);
+                    fragmentActivity[FIRST],
+                    fragmentActivity[SECOND],
+                    fragmentActivity[THIRD],
+                    fragmentActivity[FOURTH]);
         } else {  // 内存重启时调用
             // 这里库已经做了Fragment恢复,所有不需要额外的处理了, 不会出现重叠问题
             // 这里我们需要拿到mFragments的引用
-            mFragments[FIRST] = findFragment(OneFragment.class);
-            mFragments[SECOND] = findFragment(TwoFragment.class);
-            mFragments[THIRD] = findFragment(ThreeFragment.class);
-            mFragments[FOURTH] = findFragment(FourFragment.class);
+            fragmentActivity[FIRST] = findFragment(OneFragment.class);
+            fragmentActivity[SECOND] = findFragment(TwoFragment.class);
+            fragmentActivity[THIRD] = findFragment(ThreeFragment.class);
+            fragmentActivity[FOURTH] = findFragment(FourFragment.class);
         }
 
         /*
@@ -75,16 +70,16 @@ public class MainActivity extends BaseCompatActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 switch (radioGroup.getCheckedRadioButtonId()) {
                     case R.id.home_tab_one:
-                        showHideFragment(mFragments[FIRST]);
+                        showHideFragment(fragmentActivity[FIRST]);
                         break;
                     case R.id.home_tab_two:
-                        showHideFragment(mFragments[SECOND]);
+                        showHideFragment(fragmentActivity[SECOND]);
                         break;
                     case R.id.home_tab_three:
-                        showHideFragment(mFragments[THIRD]);
+                        showHideFragment(fragmentActivity[THIRD]);
                         break;
                     case R.id.home_tab_four:
-                        showHideFragment(mFragments[FOURTH]);
+                        showHideFragment(fragmentActivity[FOURTH]);
                         break;
                 }
             }

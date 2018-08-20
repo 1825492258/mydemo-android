@@ -37,6 +37,7 @@ import item.com.demo.adapter.SpikeAdapter;
 import item.com.demo.adapter.UlTraPagerAdapter;
 import item.com.demo.view.activity.GirlsFragmentActivity;
 import item.com.demo.view.activity.MultipleActivity;
+import item.com.demo.view.ohter.OtherActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,7 +56,8 @@ public class ThreeFragment extends BaseCompatFragment {
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     private SpikeAdapter adapter;
-
+    @BindView(R.id.btnToOther)
+    Button btnToOther;
     public static ThreeFragment newInstance() {
         Bundle args = new Bundle();
         ThreeFragment oneFragment = new ThreeFragment();
@@ -91,6 +93,12 @@ public class ThreeFragment extends BaseCompatFragment {
             }
         });
         initTimeDown(70 * 60 * 1000 + ""); // 这表示
+        btnToOther.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OtherActivity.show(mActivity);
+            }
+        });
     }
 
     @Override

@@ -297,6 +297,8 @@ public class DownloadService extends Service {
                     stopSelf();
                 }
                 break;
+                default:
+                    break;
             }
             return false;
         }

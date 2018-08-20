@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide;
 import com.item.sdk.global.GlideApp;
 import com.item.sdk.global.GlobalApplication;
 import com.lzy.ninegrid.NineGridView;
+import com.raizlabs.android.dbflow.config.FlowManager;
 
 import item.com.demo.R;
 
@@ -18,6 +19,8 @@ public class MyApplication extends GlobalApplication{
     @Override
     public void onCreate() {
         super.onCreate();
+        // 初始化DBFlow的操作
+        FlowManager.init(this);
         NineGridView.setImageLoader(new GlideImageLoader());
     }
     private class GlideImageLoader implements NineGridView.ImageLoader{

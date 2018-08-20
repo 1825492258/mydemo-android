@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.widget.TextView;
 
 import org.jsoup.Jsoup;
@@ -19,7 +18,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.item.sdk.base.fragment.BaseCompatFragment;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.AbsCallback;
-import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
 import java.io.IOException;
@@ -60,6 +58,7 @@ public class MztuFragment extends BaseCompatFragment implements BaseQuickAdapter
     TextView mText;
     @BindView(R.id.mLayout)
     SwipeRefreshLayout mLayout;
+
     @Override
     public void initUI(Bundle savedInstanceState) {
         assert getArguments() != null;
@@ -83,18 +82,21 @@ public class MztuFragment extends BaseCompatFragment implements BaseQuickAdapter
         showRefreshing(true);
         onLoadList();
     }
+
     @Override
     public void onRefresh() {
         onLoadList();
     }
-    private void showRefreshing(final boolean refresh){
+
+    private void showRefreshing(final boolean refresh) {
         mLayout.postDelayed(new Runnable() {
             @Override
             public void run() {
                 mLayout.setRefreshing(refresh);
             }
-        },300);
+        }, 300);
     }
+
     private void onLoadList() {
         OkGo.<List<Girl>>get(url + current)
                 .execute(new AbsCallback<List<Girl>>() {
@@ -105,7 +107,6 @@ public class MztuFragment extends BaseCompatFragment implements BaseQuickAdapter
                         if (girls != null) {
                             current = 2;
                             adapter.setNewData(girls);
-                            Log.d("jiejie",girls.get(0).getUrl() + "  " + girls.get(0).getLink() + "  " + girls.get(0).getRefer());
                         }
                     }
 
@@ -136,31 +137,27 @@ public class MztuFragment extends BaseCompatFragment implements BaseQuickAdapter
                 .execute(new AbsCallback<List<Girl>>() {
                     @Override
                     public void onSuccess(Response<List<Girl>> response) {
-                        if (response != null && response.body().size() > 0) {
+                        if (response != null && response.body().isEmpty()) {
                             current++;
                             adapter.addData(response.body());
                             adapter.loadMoreComplete();
                         } else {
                             adapter.loadMoreEnd();
                         }
-                        Log.d("jiejie", response.body().size() + "");
                     }
 
                     @Override
                     public List<Girl> convertResponse(okhttp3.Response response) throws Throwable {
                         List<Girl> girls = new ArrayList<>();
-                        try {
-                            Document doc = Jsoup.connect(url + current).timeout(10000).get();
-                            Element total = doc.select("div.postlist").first();
-                            Elements items = total.select("li");
-                            for (Element element : items) {
-                                Girl girl = new Girl(element.select("img").first().attr("data-original"));
-                                girl.setLink(element.select("a[href]").attr("href"));
-                                girl.setRefer(fakeRefer);
-                                girls.add(girl);
-                            }
-                        } catch (IOException e) {
-                            e.printStackTrace();
+
+                        Document doc = Jsoup.connect(url + current).timeout(10000).get();
+                        Element total = doc.select("div.postlist").first();
+                        Elements items = total.select("li");
+                        for (Element element : items) {
+                            Girl girl = new Girl(element.select("img").first().attr("data-original"));
+                            girl.setLink(element.select("a[href]").attr("href"));
+                            girl.setRefer(fakeRefer);
+                            girls.add(girl);
                         }
                         return girls;
                     }

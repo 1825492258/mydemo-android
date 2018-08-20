@@ -44,4 +44,5 @@ ext {
     circleimageviewVersion = '2.2.0'
     okhttpVersion = '3.10.0'
     glideVersion = '4.7.1'
+    dbflow_version = '4.2.4'
 }
