@@ -76,23 +76,23 @@ public class EvaluationAdapter extends BaseAdapter {
         EvaluationBean bean = getItem(position);
         holder.username.setText(bean.getUserName());
 
-        ArrayList<ImageInfo> imageInfo= new ArrayList<>();
+        ArrayList<ImageInfo> imageInfo = new ArrayList<>();
         List<String> imageDetails = bean.getImageInfo();
-        if(imageDetails != null){
-            for (String image : imageDetails){
+        if (imageDetails != null) {
+            for (String image : imageDetails) {
                 ImageInfo info = new ImageInfo();
                 info.setThumbnailUrl(image);
                 info.setBigImageUrl(image);
                 imageInfo.add(info);
             }
         }
-        holder.nineGridView.setAdapter(new NineGridViewClickAdapter(context,imageInfo));
+        holder.nineGridView.setAdapter(new NineGridViewClickAdapter(context, imageInfo));
         // 下面的ListView
-        if(bean.getReplyBeans() == null) {
+        if (bean.getReplyBeans() == null) {
             holder.contents.setVisibility(View.GONE);
-        }else {
+        } else {
             holder.contents.setVisibility(View.VISIBLE);
-            holder.contents.setAdapter(new CommentsAdapter(context,bean.getReplyBeans()));
+            holder.contents.setAdapter(new CommentsAdapter(context, bean.getReplyBeans()));
         }
         return convertView;
     }
@@ -111,7 +111,7 @@ public class EvaluationAdapter extends BaseAdapter {
         @BindView(R.id.nineGrid)
         NineGridView nineGridView;
         private PopupWindow window;
-        private PopupWindow editWindow;
+
         private View rootView;
 
         public ViewHolder(View convertView) {
@@ -144,7 +144,7 @@ public class EvaluationAdapter extends BaseAdapter {
                     break;
                 case R.id.comment: // 评价
                     View editView = mInflater.inflate(R.layout.replay_input, null);
-                    editWindow = new PopupWindow(editView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    PopupWindow editWindow = new PopupWindow(editView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                     editWindow.setOutsideTouchable(true);
                     editWindow.setFocusable(true);
                     editWindow.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
@@ -163,10 +163,13 @@ public class EvaluationAdapter extends BaseAdapter {
                     editWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
                         @Override
                         public void onDismiss() {
-                            if (imm.isActive()) imm.toggleSoftInput(0, InputMethodManager.RESULT_SHOWN);
+                            if (imm.isActive())
+                                imm.toggleSoftInput(0, InputMethodManager.RESULT_SHOWN);
                         }
                     });
                     if (window != null) window.dismiss();
+                    break;
+                default:
                     break;
             }
         }

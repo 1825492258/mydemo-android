@@ -1,7 +1,6 @@
 package item.com.demo.adapter;
 
 import android.support.annotation.Nullable;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -13,7 +12,6 @@ import java.util.List;
 
 import item.com.demo.R;
 import item.com.demo.bean.SubBean;
-import item.com.demo.view.activity.MovieDetailActivity;
 
 /**
  * Created by wuzongjie on 2018/8/1
@@ -58,7 +56,7 @@ public class MovieAdapter extends BaseQuickAdapter<SubBean.SubjectsBean,BaseView
      */
     private String pListToString(List<SubBean.SubjectsBean.DirectorsBean> list) {
         String str = "";
-        if (list.size() == 0)
+        if (list==null||list.isEmpty())
             return str;
         for (int i = 0; i < list.size(); i++) {
             str = str + list.get(i).getName();
@@ -75,7 +73,7 @@ public class MovieAdapter extends BaseQuickAdapter<SubBean.SubjectsBean,BaseView
      */
     private String pListToStrings(List<SubBean.SubjectsBean.CastsBean> list) {
         String str = "";
-        if (list.size() == 0)
+        if (list.isEmpty())
             return str;
         for (int i = 0; i < list.size(); i++) {
             str = str + list.get(i).getName();

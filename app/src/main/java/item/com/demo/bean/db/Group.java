@@ -36,7 +36,7 @@ public class Group extends BaseModel implements Serializable{
     private User user; // 定义一个外键
     //这里是设置为one-one的形式，切记不要加stubbedRelationship = true，要不然后期只能查询id，其他值查不出来
 
-   public List<Ant> ants;
+   private List<Ant> ants;
     @OneToMany(methods = {OneToMany.Method.SAVE}, variableName = "ants")
     public List<Ant> getMyAnts() {
         if (ants == null || ants.isEmpty()) {

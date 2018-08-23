@@ -32,6 +32,7 @@ import item.com.demo.adapter.SpikeAdapter;
 import item.com.demo.adapter.UlTraPagerAdapter;
 import item.com.demo.view.activity.GirlsFragmentActivity;
 import item.com.demo.view.activity.MultipleActivity;
+import item.com.demo.view.activity.ShopActivity;
 import item.com.demo.view.ohter.OtherActivity;
 
 /**
@@ -52,6 +53,9 @@ public class ThreeFragment extends BaseCompatFragment {
     RecyclerView recyclerView;
     @BindView(R.id.btnToOther)
     Button btnToOther;
+    @BindView(R.id.btnToShop)
+    Button btnToShop;
+
     public static ThreeFragment newInstance() {
         Bundle args = new Bundle();
         ThreeFragment oneFragment = new ThreeFragment();
@@ -72,6 +76,7 @@ public class ThreeFragment extends BaseCompatFragment {
                 GirlsFragmentActivity.show(mActivity);
             }
         });
+
         initUltra();
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         List<String> a = new ArrayList<>();
@@ -91,6 +96,12 @@ public class ThreeFragment extends BaseCompatFragment {
             @Override
             public void onClick(View view) {
                 OtherActivity.show(mActivity);
+            }
+        });
+        btnToShop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShopActivity.show(mActivity);
             }
         });
     }

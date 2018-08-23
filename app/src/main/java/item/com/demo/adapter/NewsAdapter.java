@@ -7,7 +7,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.lzy.ninegrid.ImageInfo;
 import com.lzy.ninegrid.NineGridView;
-import com.lzy.ninegrid.NineGridViewAdapter;
 import com.lzy.ninegrid.preview.NineGridViewClickAdapter;
 
 import java.util.ArrayList;
@@ -28,21 +27,21 @@ public class NewsAdapter extends BaseQuickAdapter<GankModel,BaseViewHolder>{
 
     @Override
     protected void convert(BaseViewHolder helper, final GankModel model) {
-        helper.setText(R.id.title,model.desc)
-                .setText(R.id.desc, model.desc)//
-                .setText(R.id.pubDate, model.publishedAt.toString())//
-                .setText(R.id.source, model.source);
+        helper.setText(R.id.title,model.getDesc())
+                .setText(R.id.desc, model.getDesc())//
+                .setText(R.id.pubDate, model.getPublishedAt().toString())//
+                .setText(R.id.source, model.getSource());
         View view = helper.getConvertView();
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                WebActivity.show(mContext,model.desc,model.url);
+                WebActivity.show(mContext,model.getDesc(),model.getUrl());
             }
         });
         NineGridView nineGrid = helper.getView(R.id.nineGrid);
         ArrayList<ImageInfo> imageInfo = new ArrayList<>();
-        if (model.images != null) {
-            for (String image : model.images) {
+        if (model.getImages() != null) {
+            for (String image : model.getImages()) {
                 ImageInfo info = new ImageInfo();
                 info.setThumbnailUrl(image);
                 info.setBigImageUrl(image);

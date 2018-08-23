@@ -1,18 +1,14 @@
 package item.com.demo.adapter;
 
-import android.app.Activity;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.ImageViewTarget;
@@ -37,7 +33,7 @@ public class UlTraPagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return banns == null || banns.size() == 0 ? image.length : banns.size();
+        return banns == null || banns.isEmpty() ? image.length : banns.size();
     }
 
     @Override
@@ -53,7 +49,7 @@ public class UlTraPagerAdapter extends PagerAdapter {
         final ProgressBar progressBar = view.findViewById(R.id.pager_bar);
         // 加载图片
         GlideApp.with(container.getContext())
-                .load(banns == null || banns.size() == 0 ? image[position] : banns.get(position))
+                .load(banns == null || banns.isEmpty() ? image[position] : banns.get(position))
                 .centerCrop()
                 .placeholder(R.drawable.ic_default_color) // 默认显示图片
                 .diskCacheStrategy(DiskCacheStrategy.ALL) // 使用缓存

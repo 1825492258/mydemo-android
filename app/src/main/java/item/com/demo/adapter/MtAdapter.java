@@ -45,9 +45,6 @@ public class MtAdapter extends BaseQuickAdapter<Girl, BaseViewHolder> {
             public void onClick(View view) {
                 if (!TextUtils.isEmpty(item.getUrl())) {
                     ImageBrowseActivity.show(mContext, item.getUrl());
-                }else {
-//                    Intent intent = MaituActivity.newIntent(mContext,item.getLink(),"");
-//                    mContext.startActivity(intent);
                 }
             }
         });

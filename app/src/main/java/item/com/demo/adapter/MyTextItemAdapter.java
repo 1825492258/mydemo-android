@@ -37,13 +37,15 @@ public class MyTextItemAdapter extends BaseMultiItemQuickAdapter<MyTextItem,Base
             case 2:
                 break;
             case 3:
-                //bindContentData(helper,item);
-                if(item.getItem()==null || item.getItem().size() <=0) return;
+
+                if(item.getItem().isEmpty()) return;
                 RecyclerView recyclerView = helper.getView(R.id.spike_content_view);
                 recyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
                 SpikeAdapter adapter = new SpikeAdapter(R.layout.adapter_spike,item.getItem());
                 recyclerView.setAdapter(adapter);
                 break;
+                default:
+                    break;
         }
     }
 }

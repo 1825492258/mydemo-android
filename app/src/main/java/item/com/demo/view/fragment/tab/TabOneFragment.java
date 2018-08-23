@@ -104,7 +104,7 @@ public class TabOneFragment extends BaseCompatFragment implements SwipeRefreshLa
                 .execute(new JsonCallback<GankResponse<List<GankModel>>>() {
                     @Override
                     public void onSuccess(Response<GankResponse<List<GankModel>>> response) {
-                        List<GankModel> results = response.body().results;
+                        List<GankModel> results = response.body().getResults();
                         if (results != null) {
                             currentPage = 2;
                             newsAdapter.setNewData(results);
@@ -140,7 +140,7 @@ public class TabOneFragment extends BaseCompatFragment implements SwipeRefreshLa
                     @Override
                     public void onSuccess(Response<GankResponse<List<GankModel>>> response) {
                         Log.d("jiejie", "---" + url + currentPage);
-                        List<GankModel> results = response.body().results;
+                        List<GankModel> results = response.body().getResults();
                         if (results != null && results.size() > 0) {
                             currentPage++;
                             newsAdapter.addData(results);

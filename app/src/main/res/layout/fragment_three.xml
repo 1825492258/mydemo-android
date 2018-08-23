@@ -90,9 +90,17 @@
             android:textSize="12sp" />
 
     </LinearLayout>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <Button
         android:layout_width="wrap_content"
         android:id="@+id/btnToOther"
         android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btnToShop"
+        android:text="Shop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    </LinearLayout>
 </LinearLayout>

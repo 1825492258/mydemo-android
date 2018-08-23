@@ -35,6 +35,6 @@ public class MsgAdapter extends BaseQuickAdapter<Msg,BaseViewHolder>{
     @Override
     protected void convert(BaseViewHolder helper, Msg item) {
        //Msg i =  mItems.get(helper.getPosition());
-        helper.setText(R.id.tv_msg,item.message);
+        helper.setText(R.id.tv_msg,item.getMessage());
     }
 }
