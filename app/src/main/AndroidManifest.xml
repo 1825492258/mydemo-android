@@ -48,7 +48,8 @@
         <activity android:name=".view.activity.MovieDetailActivity" />
         <activity android:name=".view.activity.TextActivity" />
         <activity android:name=".view.ohter.OtherActivity" />
-        <activity android:name=".view.activity.ShopActivity"></activity>
+        <activity android:name=".view.activity.ShopActivity" />
+        <activity android:name=".view.activity.KeyActivity"></activity>
     </application>
 
 </manifest>

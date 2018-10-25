@@ -88,18 +88,18 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
 
         //详细自定义的原理和文档，看这里： https://github.com/jeasonlzy/okhttp-OkGo/wiki/JsonCallback
         ResponseBody body = response.body();
-        if(body == null) return null;
+        if (body == null) return null;
         T data = null;
         Gson gson = new Gson();
         JsonReader jsonReader = new JsonReader(body.charStream());
-        if(type !=null) {
-            data = gson.fromJson(jsonReader,type);
-        }else if(clazz !=null) {
-            data = gson.fromJson(jsonReader,clazz);
-        }else {
+        if (type != null) {
+            data = gson.fromJson(jsonReader, type);
+        } else if (clazz != null) {
+            data = gson.fromJson(jsonReader, clazz);
+        } else {
             Type genType = getClass().getGenericSuperclass();
             Type type = ((ParameterizedType) genType).getActualTypeArguments()[0];
-            data = gson.fromJson(jsonReader,type);
+            data = gson.fromJson(jsonReader, type);
         }
         return data;
     }
@@ -111,7 +111,6 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
     public void onError(com.lzy.okgo.model.Response<T> response) {
         super.onError(response);
         Throwable exception = response.getException();
-        if (exception != null) exception.printStackTrace();
         if (exception instanceof UnknownHostException || exception instanceof ConnectException) {
             onError("网络连接失败，请连接网络");
         } else if (exception instanceof SocketTimeoutException) {
@@ -133,5 +132,6 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
             onError("未知错误");
         }
     }
+
     public abstract void onError(String errMessage);
 }

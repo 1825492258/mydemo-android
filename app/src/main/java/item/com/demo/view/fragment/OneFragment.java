@@ -42,7 +42,8 @@ public class OneFragment extends BaseCompatFragment {
         oneFragment.setArguments(args);
         return oneFragment;
     }
-
+    private List<String> te;
+    private List<String> text;
     @Override
     public int getLayoutId() {
         return R.layout.fragment_one;
@@ -53,11 +54,13 @@ public class OneFragment extends BaseCompatFragment {
         Log.d("jiejie", "OneFragment  Bundle");
         StatusBarUtil.immersive(mActivity);
         StatusBarUtil.setPaddingSmart(mActivity, mToolbar);
-        List<String> te = new ArrayList<>();
-        for (int i = 0; i < 50; i++) {
+         te = new ArrayList<>();
+        text = new ArrayList<>();
+        for (int i = 0; i <30; i++) {
             te.add("----" + i);
         }
-         adapter = new TextAdapter(te);
+
+         adapter = new TextAdapter(text);
 //        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -76,8 +79,12 @@ public class OneFragment extends BaseCompatFragment {
             @Override
             public void onClick(View view) {
                 EvaluationActivity.show(mActivity);
+               // te.set(0,"111111111");
+               // adapter.notifyDataSetChanged();
             }
         });
+        text.addAll(te);
+        adapter.notifyDataSetChanged();
         adapter.setTextInterface(new TextAdapter.MyTextInterface() {
             @Override
             public void onOne(int position) {

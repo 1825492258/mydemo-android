@@ -5,4 +5,8 @@
     <color name="colorAccent">#FF4081</color>
     <color name="bg_btn">#dadada</color>
     <color name="colorWhite">#ffffffff</color>
+    <color name="btn_enable">#232540</color><!--按钮不可用时的颜色-->
+    <color name="btn_normal">#3d8afc</color><!--按钮可用时的颜色-->
+    <color name="sec_font_content">#484963</color><!--二号灰色字体-->
+    <color name="text_normal">#292c34</color>
 </resources>

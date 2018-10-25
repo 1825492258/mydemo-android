@@ -37,6 +37,15 @@ public class Group extends BaseModel implements Serializable{
     //这里是设置为one-one的形式，切记不要加stubbedRelationship = true，要不然后期只能查询id，其他值查不出来
 
    private List<Ant> ants;
+
+    public List<Ant> getAnts() {
+        return ants;
+    }
+
+    public void setAnts(List<Ant> ants) {
+        this.ants = ants;
+    }
+
     @OneToMany(methods = {OneToMany.Method.SAVE}, variableName = "ants")
     public List<Ant> getMyAnts() {
         if (ants == null || ants.isEmpty()) {

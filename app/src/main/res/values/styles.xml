@@ -29,4 +29,18 @@
         <item name="android:windowEnterAnimation">@anim/reply_window_enter</item>
         <item name="android:windowExitAnimation">@anim/reply_window_exit</item>
     </style>
+
+    <!--dialog的样式-->
+    <style name="custom_dialogs" parent="@android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimAmount">0.6</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:windowAnimationStyle">@style/Animation_Top_Dialog</item>
+    </style>
+    <style name="Animation_Top_Dialog">
+        <item name="android:windowExitAnimation">@anim/text_dialog_exit</item>
+        <item name="android:windowEnterAnimation">@anim/text_dialog_enter</item>
+    </style>
 </resources>

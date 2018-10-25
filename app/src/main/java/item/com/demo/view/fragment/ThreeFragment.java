@@ -7,6 +7,7 @@ import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.item.sdk.base.fragment.BaseCompatFragment;
+import com.item.sdk.utils.ToastTipUtil;
 import com.item.sdk.utils.ToastUtils;
 import com.tmall.ultraviewpager.UltraViewPager;
 import com.tmall.ultraviewpager.transformer.UltraDepthScaleTransformer;
@@ -28,9 +30,13 @@ import java.util.List;
 
 import butterknife.BindView;
 import item.com.demo.R;
+import item.com.demo.adapter.MyPagerAdapter;
 import item.com.demo.adapter.SpikeAdapter;
+import item.com.demo.adapter.SpikeAdapters;
 import item.com.demo.adapter.UlTraPagerAdapter;
+import item.com.demo.view.MyRightDialog;
 import item.com.demo.view.activity.GirlsFragmentActivity;
+import item.com.demo.view.activity.KeyActivity;
 import item.com.demo.view.activity.MultipleActivity;
 import item.com.demo.view.activity.ShopActivity;
 import item.com.demo.view.ohter.OtherActivity;
@@ -47,6 +53,8 @@ public class ThreeFragment extends BaseCompatFragment {
     TextView timeSeconds;
     @BindView(R.id.text)
     Button mText;
+    @BindView(R.id.btnKey)
+    Button btnKey;
     @BindView(R.id.ultra_view)
     UltraViewPager ultraViewPager;
     @BindView(R.id.recyclerView)
@@ -55,7 +63,10 @@ public class ThreeFragment extends BaseCompatFragment {
     Button btnToOther;
     @BindView(R.id.btnToShop)
     Button btnToShop;
-
+    @BindView(R.id.btnToast)
+    Button btnToast;
+    @BindView(R.id.ultra_views)
+    UltraViewPager mViewPager;
     public static ThreeFragment newInstance() {
         Bundle args = new Bundle();
         ThreeFragment oneFragment = new ThreeFragment();
@@ -78,6 +89,7 @@ public class ThreeFragment extends BaseCompatFragment {
         });
 
         initUltra();
+        // 这里是横向的RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         List<String> a = new ArrayList<>();
         for (int i = 0; i < 8; i++) {
@@ -104,8 +116,28 @@ public class ThreeFragment extends BaseCompatFragment {
                 ShopActivity.show(mActivity);
             }
         });
+        btnKey.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                 KeyActivity.show(mActivity);
+                ToastTipUtil.showTip("失败了",1000,2);
+            }
+        });
+        btnToast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //ToastTipUtil.showTip("你好啊",1500,1);
+                ToastTipUtil.showTip("你好啊");
+                show();
+            }
+        });
+        initView();
     }
-
+    private MyRightDialog mdialog;
+    private void show(){
+        if(mdialog == null) mdialog = new MyRightDialog(mActivity);
+        mdialog.show();
+    }
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
@@ -183,5 +215,40 @@ public class ThreeFragment extends BaseCompatFragment {
         ultraViewPager.setInfiniteLoop(true);
         // 设置页面自动切换的间隔为3s
         ultraViewPager.setAutoScroll(3000);
+    }
+   // private int mPageSize = 3; //每页显示的最大的数量
+    private void initView(){
+        // 添加集合数据
+        List<String> a = new ArrayList<>();
+        List<View> viewPagerList = new ArrayList<View>();
+        for (int i = 0; i < 8; i++) {
+            a.add("首页" + i);
+        }
+        // 总的页数向上取整
+        int totalPage = (int) Math.ceil(a.size() *1.0 / 3);
+
+        for ( int i =0; i < totalPage;i++){
+             RecyclerView recycler = (RecyclerView) View.inflate(mActivity,
+                    R.layout.item_grid,null);
+            GridLayoutManager mgr = new GridLayoutManager(mActivity, 3);
+             recycler.setLayoutManager(mgr);
+             recycler.setAdapter(new SpikeAdapters(R.layout.adapter_spike,a,i));
+             // 每个RecyclerView作为一个View对象添加到ViewPager中
+            viewPagerList.add(recycler);
+        }
+        // 设置ViewPager的适配器
+        mViewPager.setAdapter(new MyPagerAdapter(viewPagerList));
+        // 内置indicator 初始化
+        mViewPager.initIndicator();
+        // 设置indicator样式
+        mViewPager.getIndicator()
+                .setOrientation(UltraViewPager.Orientation.HORIZONTAL)
+                .setFocusResId(R.drawable.ic_select_bg)
+                .setNormalResId(R.drawable.ic_no_bg)
+//                .setFocusColor(Color.GREEN)
+//                .setNormalColor(Color.WHITE)
+                .setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM).build();
+                //.setMargin(0, 0, 0, ToastUtils.dp2px(2))
+                //.setRadius((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3, getResources().getDisplayMetrics())).build();
     }
 }

@@ -58,7 +58,6 @@ public abstract class HttpsCallback<T> extends AbsCallback<T> {
     @Override
     public void onError(Response<T> response) {
         Throwable exception = response.getException();
-        if (exception != null) exception.printStackTrace();
         if (exception instanceof UnknownHostException || exception instanceof ConnectException) {
             onError("网络连接失败，请连接网络");
         } else if (exception instanceof SocketTimeoutException) {

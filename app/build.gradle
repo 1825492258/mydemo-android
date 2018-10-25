@@ -70,4 +70,6 @@ dependencies {
     annotationProcessor "com.github.Raizlabs.DBFlow:dbflow-processor:$rootProject.dbflow_version"
     implementation "com.github.Raizlabs.DBFlow:dbflow-core:$rootProject.dbflow_version"
     implementation "com.github.Raizlabs.DBFlow:dbflow:$rootProject.dbflow_version"
+    // 完全定义的软键盘
+    implementation 'com.ziyeyouhu:customizekeyboard:1.0.0'
 }

@@ -45,7 +45,15 @@ public class MathUtils {
         BigDecimal b = new BigDecimal(Double.toString(oldDouble), new MathContext(scale, rMode));
         return b.doubleValue();
     }
-
+    /**
+     * 设置小数位精度
+     *
+     * @param scale 保留几位小数
+     */
+    private String setPrecision(Double num, int scale) {
+        BigDecimal bigDecimal = new BigDecimal(num);
+        return bigDecimal.setScale(scale, BigDecimal.ROUND_DOWN).toPlainString();
+    }
     /**
      * 小数点之后保留几位小数(此处，我们用BigDecimal提供的（除以div）方法实现)
      *

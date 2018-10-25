@@ -18,12 +18,19 @@ import item.com.demo.R;
 /**
  * Created by wuzongjie on 2018/7/23
  */
-public class SpikeAdapter extends BaseQuickAdapter<String,BaseViewHolder>{
+public class SpikeAdapters extends BaseQuickAdapter<String,BaseViewHolder>{
+    private List<String> lists; // 数据源
+    private int mIndex; // 表示第几页
+    private int mPager = 3; // 每页显示的最大的数量
 
-    public SpikeAdapter(int layoutResId, @Nullable List<String> data) {
+    public SpikeAdapters(int layoutResId, @Nullable List<String> data) {
         super(layoutResId, data);
     }
-
+    public SpikeAdapters(int layoutResId, @Nullable List<String> data,int index) {
+        super(layoutResId, data);
+        this.lists = data;
+        this.mIndex = index;
+    }
     @Override
     protected void convert(BaseViewHolder helper, String item) {
         ((TextView)helper.getView(R.id.spike_ware_old_price)).getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
@@ -37,5 +44,25 @@ public class SpikeAdapter extends BaseQuickAdapter<String,BaseViewHolder>{
                 ,LinearLayout.LayoutParams.WRAP_CONTENT);
         view.setLayoutParams(params);
         return view;
+    }
+
+    /**
+     * 先搬到数据的大小是否满足本页的
+     */
+    @Override
+    public int getItemCount() {
+        return lists.size() > (mIndex + 1) * mPager ?
+                mPager : (lists.size() - mIndex* mPager);
+    }
+
+    @Nullable
+    @Override
+    public String getItem(int position) {
+        return lists.get(position + mIndex * mPager);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position + mIndex * mPager;
     }
 }

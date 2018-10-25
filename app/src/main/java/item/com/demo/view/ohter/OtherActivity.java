@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import item.com.demo.R;
 import item.com.demo.bean.db.Ant;
@@ -67,9 +66,9 @@ public class OtherActivity extends BaseCompatActivity {
         List<Ant> ants = new ArrayList<>();
         ants.add(ant1);ants.add(ant2);
         Group one = new Group("第一个", 1, new User("李四", "111"));
-        one.ants = ants;
+        one.setAnts(ants);
         Group two = new Group("第二个", 2, new User("张三", "110"));
-        two.ants = null;
+       two.setAnts(null);
         one.save();
         two.save();
     }
