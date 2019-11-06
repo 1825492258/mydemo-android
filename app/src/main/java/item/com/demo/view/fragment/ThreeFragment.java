@@ -67,6 +67,7 @@ public class ThreeFragment extends BaseCompatFragment {
     Button btnToast;
     @BindView(R.id.ultra_views)
     UltraViewPager mViewPager;
+
     public static ThreeFragment newInstance() {
         Bundle args = new Bundle();
         ThreeFragment oneFragment = new ThreeFragment();

@@ -137,7 +137,7 @@ public class MovieFragment extends BaseCompatFragment implements SwipeRefreshLay
                start(TopMovieFragment.newInstance());
             }
         });
-        mAdapter.addHeaderView(headView);
+      //  mAdapter.addHeaderView(headView);
     }
 
 
